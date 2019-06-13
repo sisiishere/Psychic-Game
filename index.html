@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.10.2.js" href="assets/javascript/game.js"></script> 
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Le Psychic Game!</title>
+  </head>
+  <body>
+
+    <h1>The Psychic Game</h1>
+    <p>Guess What Letter I'm Thinking of</p>
+    <p>Wins:0</p>
+    <p>Losses:0</p>
+    <p>Guesses Left:9</p>
+    <p>Your Guesses So Far:</p>
+
+    <script>
+
+      // VARIABLES
+      // ==========================================================================
+      var guesses = {
+        wins: "0, 1, 2, 3, 4, 5, 6, 7, 8, 9,",
+        losses: "0, 1, 2, 3, 4, 5, 6, 7, 8, 9,",
+        guesssofar: "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,",
+        guessleft: "9, 8, 7, 6, 5, 4, 3, 2, 1,",
+
+        guessleft: function() {
+          alert("Welp!" - numberofguessesleft);
+
+          numberofguessesleft = 9 - letterclicked;
+
+          alert("New mileage: " + this.mileage);
+        },
+
+        guesssofar: function() {
+          alert("Next letter"+ letterguessedsofar)
+
+          lettersguessedsofar = theletterclickedshown;
+        },
+
+        wins: function() {
+          alert("YAAASSSS!" + numberofwins);
+          this.isWorking = true;
+        },
+
+        losses: function() {
+          alert("Womp Womp!" + numberoflosses);
+        }
+      };
+
+
+      // FUNCTIONS
+      // ==============================================================================
+
+      // Logs all of our car's current stats to the console.
+      function reWriteStats() {
+        console.log("Wins: " + game.wins);
+        console.log("Losses: " + game.losses);
+        console.log("Guesssofar:" + game.guesssofar);
+        console.log("Guessleft: " + game.guessleft);
+        console.log("------------------------------");
+      }
+
+      // MAIN PROCESS
+      // ==============================================================================
+
+      // Captures keyboard input. Depending on the letter pressed it will "call" (execute) different functions.
+      document.onkeyup = function(event) {
+
+        // Captures the key press, converts it to lowercase, and saves it to a variable.
+        var letter = event.key.toLowerCase();
+
+        // If the letter guess is right, increase the number of wins.
+        if (letter === "right") {
+          game.wins();
+          reWriteStats();
+        }
+
+        // If the letter guess is wrong, decrease the number of guesses left .
+        if (letter === "wrong") {
+          game.guessleft();
+          reWriteStats();
+        }
+
+        // If the letter guess is wrong for the ninth time, increase the number of losses.
+        if (letter === "wrong9nth") {
+          game.losses();
+          reWriteStats();
+        }
+
+        // If the letter is guessed, put the letter guessed in the letters guessed so far.
+        if (letter === "guess") {
+          game.guesssofar();
+          reWriteStats();
+        }
+      };
+
+    </script>
+
+  </body>
+</html>
