@@ -10,92 +10,88 @@
   <body>
 
     <h1>The Psychic Game</h1>
-    <p>Guess What Letter I'm Thinking of</p>
-    <p>Wins:0</p>
-    <p>Losses:0</p>
-    <p>Guesses Left:9</p>
-    <p>Your Guesses So Far:</p>
+    <p id="guess">Guess What Letter I'm Thinking of</p>
+    <p id="win">Wins:0</p>
+    <p id="loss">Losses:0</p>
+    <p id="guessleft">Guesses Left:9</p>
+    <p id="guessleft">Your Guesses So Far:</p>
 
     <script>
 
       // VARIABLES
       // ==========================================================================
-      var guesses = {
-        wins: "0, 1, 2, 3, 4, 5, 6, 7, 8, 9,",
-        losses: "0, 1, 2, 3, 4, 5, 6, 7, 8, 9,",
-        guesssofar: "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,",
-        guessleft: "9, 8, 7, 6, 5, 4, 3, 2, 1,",
 
-        guessleft: function() {
-          alert("Welp!" - numberofguessesleft);
+ var guessleft = 0 ;
 
-          numberofguessesleft = 9 - letterclicked;
+var guesssofar = 0 ;
 
-          alert("New mileage: " + this.mileage);
-        },
+var win = 0;
 
-        guesssofar: function() {
-          alert("Next letter"+ letterguessedsofar)
-
-          lettersguessedsofar = theletterclickedshown;
-        },
-
-        wins: function() {
-          alert("YAAASSSS!" + numberofwins);
-          this.isWorking = true;
-        },
-
-        losses: function() {
-          alert("Womp Womp!" + numberoflosses);
-        }
-      };
+var loss = 0;
 
 
-      // FUNCTIONS
-      // ==============================================================================
+// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+var computerChoices = ["l", "g", "b", "t", "q", "i", "a", "p", "n"];
 
-      // Logs all of our car's current stats to the console.
-      function reWriteStats() {
-        console.log("Wins: " + game.wins);
-        console.log("Losses: " + game.losses);
-        console.log("Guesssofar:" + game.guesssofar);
-        console.log("Guessleft: " + game.guessleft);
-        console.log("------------------------------");
-      }
+var guessleft = 0 ;
 
-      // MAIN PROCESS
-      // ==============================================================================
+var guesssofar = 0 ;
 
-      // Captures keyboard input. Depending on the letter pressed it will "call" (execute) different functions.
-      document.onkeyup = function(event) {
+var win = 0;
 
-        // Captures the key press, converts it to lowercase, and saves it to a variable.
-        var letter = event.key.toLowerCase();
+var loss = 0;
 
-        // If the letter guess is right, increase the number of wins.
-        if (letter === "right") {
-          game.wins();
-          reWriteStats();
-        }
 
-        // If the letter guess is wrong, decrease the number of guesses left .
-        if (letter === "wrong") {
-          game.guessleft();
-          reWriteStats();
-        }
+// This function is run whenever the user presses a key.
+document.onkeyup = function(event) {
 
-        // If the letter guess is wrong for the ninth time, increase the number of losses.
-        if (letter === "wrong9nth") {
-          game.losses();
-          reWriteStats();
-        }
+    // Determines which key was pressed.
+    var userGuess = event.key;
 
-        // If the letter is guessed, put the letter guessed in the letters guessed so far.
-        if (letter === "guess") {
-          game.guesssofar();
-          reWriteStats();
-        }
-      };
+    // Randomly chooses a choice from the options array. This is the Computer's guess.
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+
+
+
+    // Alerts the key the user pressed (userGuess).
+    alert("User guess: " + userGuess);
+
+    // Alerts the Computer's guess.
+    alert("Computer guess: " + computerGuess);
+
+    document.getElementById("user-choice").innerHTML = event.key;
+
+    document.getElementById("computer-choice").innerHTML = computerGuess;
+
+    // if the user and comp make the same choice, the user wins a point in win.
+    if (userGuess === computerGuess) {
+    document.getElementById("result").innerHTML = "Yasss!";
+    win = win + 1
+
+    }
+    // if user makes a different choice from the comp, user loses a point in guesses left
+    else if (userGuess !== computerGuess) {
+    document.getElementById("result").innerHTML = "Try Again!";
+    guessleft = guessleft - 1;
+    }
+
+    // if user makes a different choice from the comp on the ninth try, user gains a poin in loss
+    else {
+    document.getElementById("result").innerHTML = "Better Luck Next Time!";
+    loss = loss + 1;
+    }
+
+    document.getElementById("win").innerHTML = win;
+
+    document.getElementById("loss").innerHTML = loss;
+
+    document.getElementById("guesssofar").innerHTML = guesssofar;
+
+    document.getElementById("guessleft").innerHTML = guessleft;
+
+};
 
     </script>
 
