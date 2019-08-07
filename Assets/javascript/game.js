@@ -1,5 +1,5 @@
 var alphabet = ["l", "g", "b", "t", "q", "i", "a", "p", "n"];
-
+ 
 var array = []
 
 var guessleft = 9 ;
