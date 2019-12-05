@@ -43,7 +43,7 @@ Deployment with Heroku
 5. Then type in git push heroku master for deployment
 6. Once the app is built and deployed successfully,go to heroku to click on the app
 7. In the app menu, then click the button (open the app)
-7. Once the app is successfully displayed, then it's good to go
+8. Once the app is successfully displayed, then it's good to go. site: https://nameless-harbor-54666.herokuapp.com/
 
 Built With
 Heroku
